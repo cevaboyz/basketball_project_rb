@@ -1,5 +1,10 @@
 ## Scraping Stats 
 
+require(polite)
+library(polite)
+library(rvest)
+library(dplyr)
+
 url <- "https://fip-web.azurewebsites.net/PlayerStats.aspx?Type=T&id=252&rg=LO"
 
 session <- bow(url, user_agent = "cevaboyz")
@@ -33,10 +38,15 @@ test2 <- test2 %>% rename(Offensive_Rebounds=X19)
 test2 <- test2 %>% rename(Total_Rebounds=X20)
 test2 <- test2 %>% rename(Turnovers=X21)
 test2 <- test2 %>% rename(Steals=X22)
+test2 <- test2 %>% rename(Blocks_against=X23)
+test2 <- test2 %>% rename(Blocks=X24)
 test2 <- test2 %>% rename(Assists=X25)
+test2 <- test2 %>% rename(Personal_Fouls=X26)
+test2 <- test2 %>% rename(Personal_Fouls_Drawn=X27)
 test2 <- test2 %>% rename(Efficiency=X28)
 
-test2 <- subset(test2,select = -c(23,24,26,27,29,30,31))
+test2 <- subset(test2, select = -c(29,30,31))
 
 test2 <- test2[3:nrow(test2),]
 
+write.csv(test2, file = "stats2019_2020")
