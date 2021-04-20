@@ -49,6 +49,6 @@ test2 <- subset(test2, select = -c(29,30,31))
 
 test2 <- test2[3:nrow(test2),]
 
-write.csv(test2, file = "stats2018_2019")
+write.csv(test2, file = "totalstat2018_2019.csv")
 
 
